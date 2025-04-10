@@ -1,0 +1,178 @@
+@use 'base/colors.scss';
+@use 'base/mixins.scss';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+button {
+    font-family: 'Epilogue', sans-serif;
+
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+span {
+    font-size: 1rem;
+    color: colors.$gray;
+}
+small {
+    font-size: 0.8rem;
+  
+}
+
+.primary-button {
+    @include mixins.button(colors.$white, colors.$primary-color, colors.$primary-color,);
+    
+}
+.main-container {
+    width: 65%;
+    margin: 0 auto;
+    max-width: 550px;
+}
+.bg-primary {
+    background-color: colors.$primary-color;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login-logo {
+        width: 60%;
+        aspect-ratio: 16/9;
+
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 100%;
+        height: 65%;
+        padding: 20px;
+        background-color: colors.$light-gray;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .login-title {
+            font-weight: bold;
+            text-align: center;
+            margin: 2em 0;
+            .login-logo {
+                width: 1em;
+                height: 1em;
+                display: inline;
+
+            }
+        }
+
+        .login-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            width: 90%;
+            margin: 0 auto;
+            .login-body-title {
+                font-weight: 500;
+                text-align: center;
+                font-size: 1.5rem;
+                margin-bottom: 0.5em;
+            }
+        }
+    }
+}
+
+.login-form {
+    margin: 2em 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: colors.$light-gray;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        position: relative;
+
+        label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: colors.$gray;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: colors.$black;
+
+            &:focus {
+                outline: none;
+                border-color: colors.$primary-color;
+            }
+        }
+
+
+    }
+
+}
+
+.password-input {
+    position: relative;
+    width: 100%;
+
+    input {
+        padding-right: 40px;
+    }
+}
+.input-error{
+    color: colors.$black!important;
+    border: 1px solid colors.$red!important;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    text-align: left;
+}.input-message-error{
+    color: colors.$red;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.password-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    cursor: pointer;
+}

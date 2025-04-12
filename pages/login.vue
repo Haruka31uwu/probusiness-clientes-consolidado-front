@@ -70,6 +70,9 @@
   </div>
 </template>
 <script setup lang="ts">
+definePageMeta({
+  layout: 'no-sidebar'
+})
 import AuthService from "@/services/auth.service";
 const showPassword = ref(false);
 const passwordInput = ref(null);

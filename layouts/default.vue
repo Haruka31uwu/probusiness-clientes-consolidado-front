@@ -21,5 +21,6 @@
     flex: 1;
     margin-left: 250px; // Igual al ancho de tu sidebar
     padding: 20px;
+    background-color: #f4f4f4; // Color de fondo del contenido principal
   }
   </style>

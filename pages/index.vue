@@ -1,7 +1,9 @@
 <template>
     <div class="home-page">
-        <!-- Tu contenido principal aquí -->
-        <h1>Página Principal</h1>
+        <ContainerHero/>
+        <ContainerList>
+
+        </ContainerList>
     </div>
 </template>
 
@@ -10,7 +12,5 @@
 </script>
 
 <style scoped lang="scss">
-.home-page {
-    // Estilos específicos para tu página principal
-}
+@import "@/assets/scss/home.scss";
 </style>

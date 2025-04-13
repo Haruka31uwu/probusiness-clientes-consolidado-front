@@ -7,47 +7,47 @@ export const useUiStore = defineStore('ui', () => {
   const isDarkMode = ref(false)
   const modules = ref<Module[]>([
     {
-        id: 1,
-        name: 'Inicio',
-        route: '/',
-        icon: 'home',
-        subModules: [],
-        isActive: false,
-        description: '',
-        isOpen: false
+      id: 1,
+      name: 'Inicio',
+      route: '/',
+      icon: 'home',
+      subModules: [],
+      isActive: false,
+      description: '',
+      isOpen: false
     },
     {
-        id: 2,
-        name: 'Mis importaciones',
-        route: null,
-        icon: 'import',
-        isOpen: false,
-        subModules: [
-            {
-                id: 3,
-                name: 'Trayecto',
-                route: '/importaciones/trayecto',
-                icon: 'submodule-a',
-                subModules: [],
-                isActive: false,
-                description: '',
-                isOpen: false
-            },
-            {
-                id: 4,
-                name: 'Entregados',
-                route: '/importaciones/entregados',
-                icon: 'submodule-b',
-                subModules: [],
-                isActive: false,
-                description: '',
-                isOpen: false
-            }
-        ],
-        isActive: false,
-        description: ''
+      id: 2,
+      name: 'Mis importaciones',
+      route: null,
+      icon: 'box',
+      isOpen: false,
+      subModules: [
+        {
+          id: 3,
+          name: 'Trayecto',
+          route: '/importaciones/trayecto',
+          icon: null,
+          subModules: [],
+          isActive: false,
+          description: '',
+          isOpen: false
+        },
+        {
+          id: 4,
+          name: 'Entregados',
+          route: '/importaciones/entregados',
+          icon: null,
+          subModules: [],
+          isActive: false,
+          description: '',
+          isOpen: false
+        }
+      ],
+      isActive: false,
+      description: ''
     },
-  ])  
+  ])
   // Restaurar del sessionStorage
   if (process.client) {
     const stored = sessionStorage.getItem('selectedModule')
@@ -58,25 +58,27 @@ export const useUiStore = defineStore('ui', () => {
   const selectModule = (module: Module) => {
     // Desmarcar todos los módulos
     modules.value.forEach(m => m.isActive = false)
-    
+
     // Marcar el módulo seleccionado
     module.isActive = true
     selectedModule.value = module
-    console.log('selectedModule', selectedModule.value)
   }
-
-  const openSubModules = (module: Module) => {
-    // Desmarcar todos los módulos
-    modules.value.forEach(m => m.isActive = false)
-    
-    // Marcar el módulo seleccionado
-    module.isActive = true
-
-    // Guardar en sessionStorage
-    if (process.client) {
-      sessionStorage.setItem('selectedModule', JSON.stringify(module))
+  const selectSubModule = (subModule: Module) => {
+    // Desmarcar todos los submódulos
+    modules.value.forEach(m => {
+      m.subModules.forEach(sm => sm.isActive = false)
+    })
+    //set parent module as isOpen
+    const parentModule = modules.value.find(m => m.subModules.some(sm => sm.id === subModule.id))
+    if (parentModule) {
+      parentModule.isOpen = true
     }
+
+    // Marcar el submódulo seleccionado
+    subModule.isActive = true
+    selectedModule.value = subModule
   }
+
   const toggleSidebar = () => {
     isSidebarOpen.value = !isSidebarOpen.value
   }
@@ -84,7 +86,18 @@ export const useUiStore = defineStore('ui', () => {
   const toggleDarkMode = () => {
     isDarkMode.value = !isDarkMode.value
   }
-
+  const selectModuleByRoute = () => {
+    const route = window.location.pathname
+    const module = modules.value.find(m => m.route === route)
+    if (module) {
+      selectModule(module)
+    } else {
+      const subModule = modules.value.flatMap(m => m.subModules).find(sm => sm.route === route)
+      if (subModule) {
+        selectSubModule(subModule)
+      }
+    }
+  }
   // Getters
   const getIsSidebarOpen = computed(() => isSidebarOpen.value)
   const getIsDarkMode = computed(() => isDarkMode.value)
@@ -95,12 +108,13 @@ export const useUiStore = defineStore('ui', () => {
     isSidebarOpen,
     isDarkMode,
     modules,
-    
+    getSelectedModule,
     // actions
     selectModule,
+    selectSubModule,
     toggleSidebar,
     toggleDarkMode,
-
+    selectModuleByRoute,
     // getters
     getIsSidebarOpen,
     getIsDarkMode

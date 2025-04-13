@@ -25,27 +25,37 @@ h2 {
     font-weight: 500;
 }
 
+h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-weight: 600;
+}
+
 
 span {
     font-size: 1rem;
     color: colors.$gray;
 }
+
 small {
     font-size: 0.8rem;
-  
+
 }
 
 .primary-button {
-    @include mixins.button(colors.$white, colors.$primary-color, colors.$primary-color  );
-    
+    @include mixins.button(colors.$white, colors.$primary, colors.$primary );
 }
+
 .main-container {
     width: 65%;
     margin: 0 auto;
     max-width: 550px;
 }
+.visibility-hidden {
+    visibility: hidden;
+}
 .bg-primary {
-    background-color: colors.$primary-color;
+    background-color: colors.$primary;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -68,10 +78,12 @@ small {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+
         .login-title {
             font-weight: bold;
             text-align: center;
             margin: 2em 0;
+
             .login-logo {
                 width: 1em;
                 height: 1em;
@@ -86,6 +98,7 @@ small {
             text-align: center;
             width: 90%;
             margin: 0 auto;
+
             .login-body-title {
                 font-weight: 500;
                 text-align: center;
@@ -135,7 +148,7 @@ small {
 
             &:focus {
                 outline: none;
-                border-color: colors.$primary-color;
+                border-color: colors.$primary;
             }
         }
     }
@@ -149,13 +162,16 @@ small {
         padding-right: 40px;
     }
 }
-.input-error{
-    color: colors.$black!important;
-    border: 1px solid colors.$red!important;
+
+.input-error {
+    color: colors.$black !important;
+    border: 1px solid colors.$red !important;
     font-size: 0.8rem;
     margin-top: 5px;
     text-align: left;
-}.input-message-error{
+}
+
+.input-message-error {
     color: colors.$red;
     font-size: 0.8rem;
     margin-top: 5px;

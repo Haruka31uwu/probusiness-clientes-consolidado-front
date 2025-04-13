@@ -1,9 +1,10 @@
-@mixin button($color: $primary-color, $bg: $primary-bg, $border: $primary-border) {
+@mixin button($color: $primary, $bg: $primary-bg, $border: $primary-border) {
     background-color: $bg;
     color: $color;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 8px 20px;
+    border-radius: 10px;
     width: 100%;
+    text-align: center;
     &:hover {
         background-color: $color;
         color: $bg;

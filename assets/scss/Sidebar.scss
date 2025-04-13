@@ -9,16 +9,33 @@
     position: fixed;
     left: 0;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .sidebar__link{
       display: flex;
       padding: 8px 10px;
-      flex-direction: column!important;
+      flex-direction: column;
       align-items: flex-start!important;
-    }.sidebar__sublist {
+      justify-content: center!important;
+    }.sidebar__sublink{
+      display: flex;
+      padding: 8px 10px;
+      flex-direction: row!important;
+      align-items: center!important;
+      &:hover {
+        background-color: colors.$light-gray;
+        color: colors.$primary;
+        cursor: pointer;
+      }a{
+        width: 100%;
+      }
+    }
+    .sidebar__sublist {
       list-style: none;
       padding: 0;
       margin: 0;
-      margin-left: 20px;
+      padding-left: 20px;
       display: flex;
       flex-direction: column;
     }
@@ -63,10 +80,7 @@
         color: #212529;
       }
       
-      &.router-link-exact-active {
-        background-color: #e9ecef;
-        font-weight: 500;
-      }
+      
     }
     
     &__checkbox {
@@ -84,10 +98,13 @@
       margin: 20px 0;
     }
   }
-  .router-link-exact-active{
-    div{
-      background-color: colors.$light-gray!important;
-    color: colors.$white;
+  .sidebar__item--active {
+    background-color: colors.$light-gray!important;
+    a,span{
+      color: colors.$primary!important;  
     }
-
+    width: 100%;
+  }.sidebar__sublist{
+    width: 100%;
+    margin: 1em;
   }

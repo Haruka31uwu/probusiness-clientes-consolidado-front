@@ -2,7 +2,9 @@
   <div class="layout-with-sidebar">
     <Sidebar />
     <main class="main-content">
-      <ClientOnly v-if="routePath && selectedModule.route == routePath">
+      <ClientOnly v-if="routePath && selectedModule.route == routePath
+     
+      ">
         <header
           class="header"
           v-if="selectedModule && selectedModule.nameSection != 'Inicio'"
@@ -21,7 +23,8 @@
         </header>
       </ClientOnly>
       <ClientOnly v-else>
-        <header class="header_no-module">
+        
+        <header class="header_no-module" v-if="routePath!='/perfil'">
           <div class="back-button">
             <img src="/assets/icon/arrow-left.svg" alt="Logo" />
             Regresar

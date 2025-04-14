@@ -7,3 +7,10 @@
     <span class="sr-only">Loading...</span>
 </div>
 </template>
+<style lang="scss" scoped>
+svg{
+    display: flex;
+    margin: auto;
+    width: 3rem;
+}
+</style>

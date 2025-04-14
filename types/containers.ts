@@ -1,7 +1,7 @@
 export interface Container {
     id: number
     carga: number
-    type: number 
+    type: number
     progress: number
     status: string
     userIsPresent: boolean
@@ -11,5 +11,11 @@ export interface Container {
     deliveryDate?: string
     createdAt?: string
 }
-
-  
+export interface ContainerJourney extends Container {
+    qtyBox: number | null
+    cbm: number | null
+    fob: number | null
+    logistic: number | null
+    tax: number | null
+    seekingUuid: string | null
+}

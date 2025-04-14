@@ -138,7 +138,6 @@ const selectModule = (module) => {
   uiStore.selectModule(module);
 };
 const selectSubModule = (subModule) => {
-  console.log(subModule);
   event.stopPropagation();
   uiStore.selectSubModule(subModule);
 };

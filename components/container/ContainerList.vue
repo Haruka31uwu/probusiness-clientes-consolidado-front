@@ -1,7 +1,7 @@
 <template>
     <div class="container-list">
-        <div v-if="isLoading" class="loading-spinner">
-            <Spinner/>
+        <div v-if="isLoading" class="container-list__skeleton">
+            <ContainerItemSkeleton v-for="i in 3" :key="i" />
         </div>
         <div v-else class="container-list__content">
             <ContainerItem
@@ -13,9 +13,8 @@
     </div>
 </template>
 <script setup lang="ts">
-import Spinner from '../commons/Spinner.vue';
 import type { Container } from '~/types/containers';
-const isLoading = ref(false);
+const isLoading = ref(true);
 const containers = ref([] as Container[]);
 onMounted(() => {
     isLoading.value = true;

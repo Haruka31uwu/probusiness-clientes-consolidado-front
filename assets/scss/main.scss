@@ -1,5 +1,7 @@
 @use 'base/colors.scss';
 @use 'base/mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap');
 
 h1,
 h2,
@@ -10,8 +12,10 @@ h6,
 p,
 span,
 a,
+small,
 button {
     font-family: 'Epilogue', sans-serif;
+    color: colors.$black;
 
 }
 

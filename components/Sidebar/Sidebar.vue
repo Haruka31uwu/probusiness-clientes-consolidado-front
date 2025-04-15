@@ -82,21 +82,24 @@
         <ul class="sidebar__list">
           <li class="sidebar__item">
             <a href="#" class="sidebar__link">
-              <label
-                class="inline-flex items-center w-full cursor-pointer flex justify-between flex-row gap-2"
-              >
+              <label class="inline-flex items-center w-full cursor-pointer">
                 <div class="flex flex-row gap-2">
-                  <img src="~/assets/icon/moon.svg" alt="moon icon" />
-                  <small
-                    class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"
-                    >Modo oscuro</small
-                  >
+                    <img src="~/assets/icon/moon.svg" alt="moon icon" />
+                    <span>
+                        Modo oscuro
+                    </span>
                 </div>
-                <input type="checkbox" value="" class="sr-only peer" />
+                &nbsp;
+                <input
+                    type="checkbox"
+                    class="sr-only peer"
+                    :checked="uiStore.isDarkMode"
+                    @change="uiStore.toggleDarkMode"
+                />
                 <div
-                  class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-orange-600 dark:peer-checked:bg-orange-600"
+                    class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-orange-600 dark:peer-checked:bg-orange-600"
                 ></div>
-              </label>
+            </label>
             </a>
           </li>
         </ul>
@@ -105,10 +108,10 @@
     </div>
     <div class="sidebar__logout flex flex-col justify-end">
       <div class="sidebar__sublink flex flex-row gap-2">
-        <img src="~/assets/icon/default.svg" alt="user icon" 
-        class="h-8 w-8"
-        />
-        <span>Miguel</span>
+        <NuxtLink to="/perfil" class="flex flex-row gap-2 items-center">
+          <img src="~/assets/icon/default.svg" alt="user icon" class="h-8 w-8" />
+          <span>Miguel</span>
+        </NuxtLink>
       </div>
       <div class="sidebar__divider"></div>
       <NuxtLink

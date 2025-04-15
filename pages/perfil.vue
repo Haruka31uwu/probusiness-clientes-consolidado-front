@@ -2,11 +2,13 @@
     <main>
         <UserProfileSkeleton v-if="isLoading" />
         <UserProfileComponent v-else :userProfile="userProfile" class="user-profile" />
+        <Sidebar :userProfile="userProfile" class="sidebar" />
     </main>
 </template>
 <script setup lang="ts">
 import UserProfileSkeleton from '~/components/profile/UserProfileSkeleton.vue';
 import type { UserProfile } from '~/types/userprofile';
+import Sidebar from '~/components/Sidebar/Sidebar.vue';
 import UserProfileComponent from '../components/profile/UserProfileComponent.vue';
 const isLoading = ref(true);
 let userProfile = ref({} as UserProfile);

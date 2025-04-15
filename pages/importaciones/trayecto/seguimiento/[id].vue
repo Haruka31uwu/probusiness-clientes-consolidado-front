@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <h4 v-if="selectedModule" class="flex flex-row gap-1 px-1  mt-4">
-      <span>{{ getParentModule(selectedModule)?.nameSection }}</span>
+      <span>{{getParentModule(selectedModule)?.nameSection}}</span>
       <div class="divider_vertical"></div>
       <span>{{ selectedModule?.nameSection }}</span>
       <div class="divider_vertical"></div>

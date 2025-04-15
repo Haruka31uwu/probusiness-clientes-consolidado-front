@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen  w-full flex items-start justify-center relative overflow-hidden">
+    <div class="h-1/2  w-full flex items-center justify-center relative overflow-hidden">
       <div class="w-full relative">
 
         <!-- Map Container -->

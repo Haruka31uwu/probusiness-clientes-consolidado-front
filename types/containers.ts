@@ -1,3 +1,5 @@
+import type { IFile } from "./file"
+
 export interface Container {
     id: number
     carga: number
@@ -18,4 +20,18 @@ export interface ContainerJourney extends Container {
     logistic: number | null
     tax: number | null
     seekingUuid: string | null
+}
+export interface ContainerJourneyStatus {
+    id: number,
+    name: string,
+    description?: string,  
+    createdAt: string,
+    status: number,
+    containerId: number,
+}
+export interface ContainerInspectionProviders{
+    id:number,
+    name:string,
+    files: IFile[],
+    notes: string,
 }

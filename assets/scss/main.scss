@@ -47,10 +47,9 @@ small {
 }
 
 .back-button {
-    @include mixins.button(colors.$black, colors.$white, colors.$white,colors.$light-gray,colors.$black );
+    @include mixins.button(colors.$black, colors.$white, colors.$white, colors.$light-gray, colors.$black );
     width: 10%;
     min-width: 150px
-
 }
 
 .main-container {
@@ -194,6 +193,43 @@ small {
     transform: translateY(-50%);
     font-size: 1.2rem;
     cursor: pointer;
-}.p-timeline-event-opposite{
-    width: 0%!important;
+}
+
+.p-timeline-event-opposite {
+    display: none !important;
+}
+
+.bg-gray {
+    background-color: colors.$gray2;
+}
+
+.bg-success {
+    background-color: colors.$green;
+}
+
+.p-timeline-vertical .p-timeline-event-connector {
+    width: 0.4em;
+}
+
+.circle-success {
+    background-color: colors.$green;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin-right: 0.5em;
+}
+
+.circle-gray {
+    background-color: colors.$gray2;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin-right: 0.5em;
+}
+
+.divider_vertical {
+    border-left: 1px solid #e0e0e0;
+    height: 20px;
+    margin: 0 10px;
+    width: 1px;
 }

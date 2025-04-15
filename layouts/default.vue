@@ -25,10 +25,13 @@
       <ClientOnly v-else>
         
         <header class="header_no-module" v-if="routePath!='/perfil'">
-          <div class="back-button">
+          <NuxtLink class="back-button"
+          :to="selectedModule.route"
+          >
+
             <img src="/assets/icon/arrow-left.svg" alt="Logo" />
             Regresar
-          </div>
+          </NuxtLink>
           <!-- <div class="header_no-module-title">
             <span>
               {{ getParentModule(selectedModule).nameSection }}

@@ -16,11 +16,25 @@
         :header="col.header"
         :sortable="true"
       ></Column>
-      <Column field="action" header="Acciones" :sortable="false">
+      <Column field="action" header="Seguimiento" :sortable="false">
         <template #body="slotProps">
           <NuxtLink
             class="flex justify-center items-center gap-2"
             :to="`/importaciones/trayecto/seguimiento/${slotProps.data.id}`"
+          >
+            <img
+              src="/assets/icon/eye.svg"
+              alt="eye"
+              class="w-4 h-4 cursor-pointer"
+            />
+          </NuxtLink>
+        </template>
+      </Column>
+      <Column field="action" header="Inspección " :sortable="false">
+        <template #body="slotProps">
+          <NuxtLink
+            class="flex justify-center items-center gap-2"
+            :to="`/importaciones/trayecto/inspeccion/${slotProps.data.id}`"
           >
             <img
               src="/assets/icon/eye.svg"
@@ -55,7 +69,5 @@ onMounted(() => {
     isLoading.value = false;
   }, 1000);
 });
-const openSeguimiento = (id: number) => {
-  alert(`Abriendo seguimiento para el trayecto con ID: ${id}`);
-};
+
 </script>

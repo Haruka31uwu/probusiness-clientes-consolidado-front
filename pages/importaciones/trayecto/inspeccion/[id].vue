@@ -1,23 +1,33 @@
 <template>
     <ClientOnly>
-        <h4 v-if="selectedModule" class="flex flex-row gap-1 px-1  mt-4">
+        <div class="title-container py-8">
+        <h4 v-if="selectedModule" class="title">
             <span>Consolidado # {{ currentRouteArray.at(-1) }}</span>
-            <div class="divider_vertical"></div>
+            <div class="divider-vertical"></div>
             <span>Inspección</span>
         </h4>
+        <div class="divider-horizontal"></div>
+        </div>
     </ClientOnly>
     <main>
-        {{ providers }}
-        <!--div por list of provider and skeleton for preview-->
-        <!--containerProviderinspection on skeleton  -->
-        <!--create containerNotasInpection and skeleton and use here-->
+      <!-- Mostrar Skeleton mientras se cargan los datos -->
+      <div v-if="isLoadingProviders">
+        <ContainerProviderInspectionSkeleton />
+      </div>
+  
+      <!-- Mostrar los datos de los proveedores cuando estén disponibles -->
+      <div v-else>
+        <ContainerProviderInspection :providers="providers" />
+      </div>
     </main>
-</template>
+  </template>
 
 <script setup lang="ts">
 import type {
     ContainerInspectionProviders
 } from '~/types/containers';
+import ContainerProviderInspection from '~/components/container/ContainerProviderInspection.vue';
+import ContainerProviderInspectionSkeleton from '~/components/container/ContainerProviderInspectionSkeleton.vue'; // Importa el Skeleton
 
 const route = useRoute();
 const currentRouteArray = ref<string[]>([]);
@@ -115,3 +125,31 @@ useHead({
   title: `Inspeccion Contenedor #${id}`,
 });
 </script>
+<style scoped lang="scss">
+.title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; // Espaciado entre el título y la línea horizontal
+
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 12px; // Espaciado entre "Consolidado", la línea vertical y "Inspección"
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+
+    .divider-vertical {
+      width: 1px;
+      height: 40px; // Altura de la línea vertical
+      background-color: #e0e0e0; // Color tenue para la línea
+    }
+  }
+
+  .divider-horizontal {
+    width: 100%;
+    height: 1px;
+    background-color: #e0e0e0; // Color tenue para la línea horizontal
+  }
+}
+</style>

@@ -100,7 +100,7 @@ onMounted(() => {
                 createdAt: "2023-10-01"
             },
             ],
-            notes: "xd"
+            notes: "pe"
         },
         {
             id: 3,
@@ -114,7 +114,7 @@ onMounted(() => {
                 createdAt: "2023-10-01"
             },
             ],
-            notes: "xd"
+            notes: "wa"
         }
 
         ];

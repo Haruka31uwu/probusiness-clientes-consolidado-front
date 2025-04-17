@@ -80,15 +80,15 @@ $font-color: #666;
             }
           }
 
-          .download-btn {
+          .delete-btn {
             background: none;
             border: none;
             font-size: 18px;
             cursor: pointer;
-            color: $font-color;
-
+            color: #ff4d4f; // Color rojo para indicar acción de borrar
+          
             &:hover {
-              color: darken($font-color, 10%);
+              color: #d9363e; // Color más oscuro al pasar el mouse
             }
           }
         }
@@ -116,6 +116,48 @@ $font-color: #666;
           border-color: darken($border-color, 10%);
         }
       }
+    }
+  }
+}
+.preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .preview-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 80%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+    }
+
+    .close-btn {
+      align-self: flex-end;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      margin-bottom: 10px;
     }
   }
 }

@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia'
 import type { Module } from '~/types/ui'
 
 export const useUiStore = defineStore('ui', () => {
   const selectedModule = ref<Module | null>(null)
   const isSidebarOpen = ref(false)
   const isDarkMode = ref(false)
+  const isLoading = ref(false)
   const modules = ref<Module[]>([
     {
       id: 1,
@@ -118,6 +118,11 @@ export const useUiStore = defineStore('ui', () => {
 
   const toggleDarkMode = () => {
     isDarkMode.value = !isDarkMode.value
+    // if(isDarkMode.value) {
+    //   document.body.classList.add('dark-mode');
+    // }else {
+    //   document.body.classList.remove('dark-mode');
+    // }
   }
   const selectModuleByRoute = () => {
     const route = window.location.pathname
@@ -134,11 +139,17 @@ export const useUiStore = defineStore('ui', () => {
   const getParentModule = (subModule: Module) => {
     return modules.value.find(m => m.subModules.some(sm => sm.id === subModule.id))
   }
+  const showLoading = () => {
+    isLoading.value = true
+  }
+  const hideLoading = () => {
+    isLoading.value = false
+  }
   // Getters
   const getIsSidebarOpen = computed(() => isSidebarOpen.value)
   const getIsDarkMode = computed(() => isDarkMode.value)
   const getSelectedModule = computed(() => selectedModule.value)
-
+  const getIsLoading = computed(() => isLoading.value)
   return {
     // state
     selectedModule,
@@ -156,6 +167,9 @@ export const useUiStore = defineStore('ui', () => {
     getIsSidebarOpen,
     getIsDarkMode,
     getParentModule,
-    initializeFromSessionStorage
+    initializeFromSessionStorage,
+    showLoading,
+    hideLoading,
+    getIsLoading
   }
 })

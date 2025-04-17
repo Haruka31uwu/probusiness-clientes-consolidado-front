@@ -3,6 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap');
 
+:root {
+    --primary: #{colors.$light-primary};
+    --gray: #{colors.$light-gray};
+    --light-gray: #{colors.$light-light-gray};
+    --gray2: #{colors.$light-gray2};
+    --white: #{colors.$light-white};
+    --black: #{colors.$light-black};
+    --red: #{colors.$light-red};
+    --green: #{colors.$light-green};
+}
+
 h1,
 h2,
 h3,
@@ -45,6 +56,173 @@ small {
     font-size: 0.8rem;
 
 }
+
+.dark-mode {
+    --primary: #{colors.$dark-primary};
+    --gray: #{colors.$dark-gray};
+    --light-gray: #{colors.$dark-light-gray};
+    --gray2: #{colors.$dark-gray2};
+    --white: #{colors.$dark-white};
+    --black: #{colors.$dark-black};
+    --red: #{colors.$dark-red};
+    --green: #{colors.$dark-green};
+
+    background-color: colors.$dark-white;
+    color: colors.$dark-black;
+
+    // Textos
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    a,
+    small,
+    button {
+        color: colors.$dark-black;
+    }
+
+    span {
+        color: colors.$dark-gray;
+    }
+
+    // Componentes principales
+    .bg-primary {
+        background-color: colors.$dark-primary;
+    }
+
+    .bg-gray {
+        background-color: colors.$dark-gray2;
+    }
+
+    .bg-success {
+        background-color: colors.$dark-green;
+    }
+
+    .bg-bold-gray {
+        background-color: colors.$dark-gray;
+    }
+
+    // Login container
+    .login-container,
+    .login-form {
+        background-color: colors.$dark-light-gray;
+
+        .form-group {
+            label {
+                color: colors.$dark-gray;
+            }
+
+            input {
+                background-color: colors.$dark-gray2;
+                color: colors.$dark-black;
+                border-color: colors.$dark-gray;
+
+                &:focus {
+                    border-color: colors.$dark-primary;
+                }
+            }
+        }
+    }
+
+    // Botones
+    .primary-button {
+        @include mixins.button(colors.$dark-black, colors.$dark-primary, colors.$dark-primary);
+    }
+
+    .back-button {
+        @include mixins.button(colors.$dark-white, colors.$dark-gray, colors.$black);
+        width: 10%;
+        min-width: 150px;
+    }
+
+    // Elementos de interfaz
+    .input-error {
+        color: colors.$dark-black !important;
+        border-color: colors.$dark-red !important;
+    }
+
+    .input-message-error {
+        color: colors.$dark-red;
+    }
+
+    // Círculos indicadores
+    .circle-success {
+        background-color: colors.$dark-green;
+    }
+
+    .circle-gray {
+        background-color: colors.$dark-gray2;
+    }
+
+    .circle-bold-gray {
+        background-color: colors.$dark-gray;
+    }
+
+    // Divisores
+    .divider_vertical {
+        border-left-color: colors.$dark-gray;
+    }
+
+    // Timeline
+    .p-timeline-vertical .p-timeline-event-connector {
+        background-color: colors.$dark-gray2;
+    }
+
+    .main-content {
+        flex: 1;
+        margin-left: 250px; // Igual al ancho de tu sidebar
+        padding: 20px;
+        background-color: var(--white)
+    }
+
+    .p-datatable .p-component {
+        background-color: colors.$dark-light-gray;
+        color: colors.$white;
+    }
+
+    .p-datatable-tbody .p-row-even {
+        background-color: colors.$dark-light-gray;
+        color: colors.$white;
+
+    }
+
+    .p-datatable-tbody .p-row-odd {
+        background-color: colors.$dark-gray;
+        color: colors.$white;
+
+    }
+
+    .p-datatable-thead tr {
+        background-color: colors.$dark-light-gray;
+    }
+
+    .p-datatable-thead th {
+        background-color: colors.$dark-light-gray;
+        color: colors.$dark-black;
+    }
+
+    .p-paginator-page-selected {
+        background-color: colors.$dark-gray;
+        color: colors.$dark-black;
+    }
+
+    .p-paginator-page:hover {
+        background-color: colors.$dark-gray;
+        color: colors.$dark-black;
+    }
+
+    .p-paginator-page:focus {
+        background-color: colors.$dark-gray;
+        color: colors.$dark-black;
+    }
+
+}
+
+/**End dark mode**/
 
 .primary-button {
     @include mixins.button(colors.$white, colors.$primary, colors.$primary );
@@ -231,9 +409,37 @@ small {
     margin-right: 0.5em;
 }
 
+.circle-bold-gray {
+    background-color: colors.$gray;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin-right: 0.5em;
+}
+
 .divider_vertical {
     border-left: 1px solid #e0e0e0;
     height: 20px;
     margin: 0 10px;
     width: 1px;
+}
+
+.bg-bold-gray {
+    background-color: colors.$gray;
+
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 250px; // Igual al ancho de tu sidebar
+    padding: 20px;
+    background-color: var(--light-gray);
 }

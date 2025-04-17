@@ -1,5 +1,201 @@
 @use 'base/colors.scss';
 @use 'base/mixins.scss';
+.dark-mode {
+    --primary: #{colors.$dark-primary};
+    --gray: #{colors.$dark-gray};
+    --light-gray: #{colors.$dark-light-gray};
+    --gray2: #{colors.$dark-gray2};
+    --white: #{colors.$dark-white};
+    --black: #{colors.$dark-black};
+    --red: #{colors.$dark-red};
+    --green: #{colors.$dark-green};
+  
+    background-color: colors.$dark-white;
+    color: colors.$dark-black;
+    .home-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: var(--white);
+        transition: background-color 0.3s ease;
+    }
+    
+    .container-hero {
+        width: 90%;
+        margin: 0 auto;
+        height: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        .container-hero__content {
+            background: url('../../assets/img/home.png') no-repeat center center;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 1em;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+    
+            .container-hero__title {
+                font-size: 2rem;
+                color: var(--white); // Mantenemos blanco para mejor contraste sobre imagen
+                text-align: start;
+                word-wrap: break-word;
+                width: 40%;
+                margin-left: 2em;
+                min-width: 300px;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            }
+    
+            .container-hero__image {
+                width: 1500px;
+                height: 500px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                filter: brightness(0.9); // Ajuste para modo oscuro
+            }
+        }
+    }
+    
+    .container-list {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 4em;
+    
+        .container-list__content,
+        .container-list__skeleton {
+            width: 100%;
+            display: grid;
+            justify-items: center;
+            column-gap: 3em;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    
+            .container-item {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 0 auto;
+                background-color: var(--light-gray);
+                border-radius: 1em;
+                padding: 1.5em 0;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+                &:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                }
+    
+                .container-item__header {
+                    width: 100%;
+                    text-align: center;
+    
+                    .container-item__title {
+                        padding-bottom: 1em;
+                        color: var(--black);
+                    }
+    
+                    .container-item__divider {
+                        width: 100%;
+                        height: 2px;
+                        background-color: var(--gray2);
+                        margin-bottom: 1em;
+                    }
+                }
+    
+                .container-item__body {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;
+                    column-gap: 2em;
+                    padding: 1em 1em;
+    
+                    .container-item__details {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100%;
+                        row-gap: 1.5em;
+    
+                        .container-item__description {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 1em;
+                            color: var(--black);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // Estilos específicos para modo oscuro
+    .dark-mode {
+        .home-page {
+            background-color: var(--white); // Fondo oscuro
+        }
+    
+        .container-hero {
+            .container-hero__content {
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.4);
+                    border-radius: 1em;
+                }
+    
+                .container-hero__title {
+                    position: relative;
+                    z-index: 1;
+                }
+    
+                .container-hero__image {
+                    filter: brightness(0.7) contrast(1.1);
+                }
+            }
+        }
+    
+        .container-list {
+            .container-item {
+                background-color: var(--gray2);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    
+                &:hover {
+                    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+                }
+    
+                .container-item__title {
+                    color: var(--black);
+                }
+                
+                .container-item__description {
+                    color: var(--gray);
+                }
+            }
+        }
+    }
+}
 .home-page{
     display: flex;
     flex-direction: column;

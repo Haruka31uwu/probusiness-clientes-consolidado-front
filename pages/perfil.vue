@@ -13,6 +13,20 @@ import UserProfileComponent from '../components/profile/UserProfileComponent.vue
 const isLoading = ref(true);
 let userProfile = ref({} as UserProfile);
 onMounted(async () => {
+
+    try {
+    const response = await fetch('/api/user-profile'); // Cambia la URL por la de tu API
+    if (!response.ok) {
+      throw new Error('Error al cargar los datos del perfil');
+    }
+    const data = await response.json();
+    userProfile.value = data;
+    isLoading.value = false;
+    console.log('Datos del perfil cargados:', userProfile.value);
+  } catch (error) {
+    console.error('Error al cargar el perfil:', error);
+    // isLoading.value = false;
+  }
     setTimeout(() => {
         userProfile.value = {
             id: 1,

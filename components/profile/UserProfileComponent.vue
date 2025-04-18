@@ -6,20 +6,77 @@
     <div class="user-profile p-8">
         <!-- Información Personal -->
         <div class="card profile-header" style="grid-area: profile-header;">
-            <img :src="userProfile.photoUrl" alt="Foto de perfil" class="profile-avatar" />
+            <div class="edit-header">
+                <img :src="userProfile.photoUrl" alt="Foto de perfil" class="profile-avatar" />
+                <button class="edit-btn" @click="toggleEditProfile">
+                {{ isEditingProfile ? '✖️' : '✏️' }}
+                </button>
+            </div>
             <div class="profile-info px-4">
                 <div class="pb-10">
                     <h2 class="profile-name">{{ userProfile.fullName }}</h2>
                     <p class="profile-dni">DNI: {{ userProfile.documentNumber }}</p>
                 </div>
                 <div class="flex flex-col gap-4">
-                    <p class="flex place-content-start"><strong style="width:80px; font-weight: 300;">Edad:</strong> {{ userProfile.age }} años</p>
-                    <p class="flex place-content-start"><strong style="width:80px; font-weight: 300;">País:</strong> {{ userProfile.country }}</p>
-                    <p class="flex place-content-start"><strong style="width:80px; font-weight: 300;">Ciudad:</strong> {{ userProfile.city }}</p>
-                    <p class="flex place-content-start"><strong style="width:80px; font-weight: 300;">Correo:</strong> {{ userProfile.email }}</p>
-                    <p class="flex place-content-start"><strong style="width:80px; font-weight: 300;">Celular:</strong> {{ userProfile.phone }}</p>
+                    <p class="flex place-content-start">
+                        <strong style="width:80px; font-weight: 300;">Edad:</strong> 
+                        <span v-if="!isEditingProfile">{{ userProfile.age }} años</span>
+                        <input
+                            v-else
+                            type="number"
+                            v-model="editableProfile.age"
+                            class="edit-input"
+                        />
+                    </p>
+                    <p class="flex place-content-start">
+                        <strong style="width:80px; font-weight: 300;">País:</strong>
+                        <span v-if="!isEditingProfile">{{ userProfile.country }}</span>
+                        <input
+                        v-else
+                        type="text"
+                        v-model="editableProfile.country"
+                        class="edit-input"
+                        />
+                    </p>
+                    <p class="flex place-content-start">
+                        <strong style="width:80px; font-weight: 300;">Ciudad:</strong>
+                        <span v-if="!isEditingProfile">{{ userProfile.city }}</span>
+                        <input
+                        v-else
+                        type="text"
+                        v-model="editableProfile.city"
+                        class="edit-input"
+                        />
+                    </p>
+                    <p class="flex place-content-start">
+                        <strong style="width:80px; font-weight: 300;">Correo:</strong>
+                        <span v-if="!isEditingProfile">{{ userProfile.email }}</span>
+                        <input
+                        v-else
+                        type="email"
+                        v-model="editableProfile.email"
+                        class="edit-input"
+                        />
+                    </p>
+                    <p class="flex place-content-start">
+                        <strong style="width:80px; font-weight: 300;">Celular:</strong>
+                        <span v-if="!isEditingProfile">{{ userProfile.phone }}</span>
+                        <input
+                        v-else
+                        type="text"
+                        v-model="editableProfile.phone"
+                        class="edit-input"
+                        />
+                    </p>
                 </div>
-                    
+                <!-- Botón de guardar para el perfil -->
+                <button
+                v-if="isEditingProfile"
+                class="save-btn"
+                @click="saveProfile"
+                >
+                Guardar
+                </button>
             </div>
         </div>
 
@@ -34,16 +91,71 @@
         <div class="card business-details" style="grid-area: business-details;" v-if="userProfile.business">
             <div class="flex flex-row gap-2 items-center mb-4">
                 <h3>Mi empresa</h3>
-                <img src="~/assets/icon/home.svg" class="mb-2" style="width:30px;" />
+                <button class="edit-btn" @click="toggleEditBusiness">
+                    {{ isEditingBusiness ? '✖️' : '✏️' }}
+                </button>
+                
             </div>
             <div class="flex flex-col gap-4">
-                <p class="flex place-content-start"><strong style="width:200px; font-weight: 300;">Empresa:</strong> {{ userProfile.business.name }}</p>
-                <p class="flex place-content-start"><strong style="width:200px; font-weight: 300;">RUC:</strong> {{ userProfile.business.ruc }}</p>
-                <p class="flex place-content-start"><strong style="width:200px; font-weight: 300;">Capacidad Comercial:</strong> {{ userProfile.business.comercialCapacity }}</p>
-                <p class="flex place-content-start"><strong style="width:200px; font-weight: 300;">Rubro:</strong> {{ userProfile.business.rubric }}</p>
-                <p class="flex place-content-start"><strong style="width:200px; font-weight: 300;">Red social:</strong> {{ userProfile.business.socialAddress }}</p>
+                <p class="flex place-content-start">
+                <strong style="width:200px; font-weight: 300;">Empresa:</strong>
+                <span v-if="!isEditingBusiness">{{ userProfile.business.name }}</span>
+                <input
+                    v-else
+                    type="text"
+                    v-model="editableBusiness.name"
+                    class="edit-input"
+                />
+                </p>
+                <p class="flex place-content-start">
+                <strong style="width:200px; font-weight: 300;">RUC:</strong>
+                <span v-if="!isEditingBusiness">{{ userProfile.business.ruc }}</span>
+                <input
+                    v-else
+                    type="text"
+                    v-model="editableBusiness.ruc"
+                    class="edit-input"
+                />
+                </p>
+                <p class="flex place-content-start">
+                <strong style="width:200px; font-weight: 300;">Capacidad Comercial:</strong>
+                <span v-if="!isEditingBusiness">{{ userProfile.business.comercialCapacity }}</span>
+                <input
+                    v-else
+                    type="text"
+                    v-model="editableBusiness.comercialCapacity"
+                    class="edit-input"
+                />
+                </p>
+                <p class="flex place-content-start">
+                <strong style="width:200px; font-weight: 300;">Rubro:</strong>
+                <span v-if="!isEditingBusiness">{{ userProfile.business.rubric }}</span>
+                <input
+                    v-else
+                    type="text"
+                    v-model="editableBusiness.rubric"
+                    class="edit-input"
+                />
+                </p>
+                <p class="flex place-content-start">
+                <strong style="width:200px; font-weight: 300;">Red social:</strong>
+                <span v-if="!isEditingBusiness">{{ userProfile.business.socialAddress }}</span>
+                <input
+                    v-else
+                    type="text"
+                    v-model="editableBusiness.socialAddress"
+                    class="edit-input"
+                />
+                </p>
             </div>
-            
+            <!-- Botón de guardar para la empresa -->
+            <button
+                v-if="isEditingBusiness"
+                class="save-btn"
+                @click="saveBusiness"
+            >
+                Guardar
+            </button>
         </div>
         <div v-else>
             <p>No hay información de la empresa disponible.</p>
@@ -69,13 +181,84 @@ const props = defineProps({
     }
 });
 const userProfile = ref({} as UserProfile);
+const isEditingProfile = ref(false);
+const isEditingBusiness = ref(false);
+const editableProfile = ref({} as Partial<UserProfile>);
+const editableBusiness = ref({} as Partial<UserProfile['business']>);
+const saveProfile = () => {
+  userProfile.value = { ...userProfile.value, ...editableProfile.value };
+  isEditingProfile.value = false;
+  console.log('Perfil guardado:', userProfile.value);
+};
+const saveBusiness = () => {
+  if (userProfile.value.business) {
+    userProfile.value.business = { ...editableBusiness.value };
+  }
+  isEditingBusiness.value = false;
+  console.log('Empresa guardada:', userProfile.value.business);
+};
 onMounted(() => {
     console.log("UserProfile mounted", props.userProfile);
     userProfile.value = props.userProfile;
+    editableProfile.value = { ...props.userProfile };
+    if (props.userProfile.business) {
+        editableBusiness.value = { ...props.userProfile.business };
+    }
 });
+
+// Alternar edición del perfil
+const toggleEditProfile = () => {
+  isEditingProfile.value = !isEditingProfile.value;
+  if (!isEditingProfile.value) {
+    // Guardar cambios al salir del modo de edición
+    userProfile.value = { ...userProfile.value, ...editableProfile.value };
+  }
+};
+
+// Alternar edición de la empresa
+const toggleEditBusiness = () => {
+  isEditingBusiness.value = !isEditingBusiness.value;
+  if (!isEditingBusiness.value && userProfile.value.business) {
+    // Guardar cambios al salir del modo de edición
+    userProfile.value.business = { ...editableBusiness.value };
+  }
+};
 
 </script>
 <style scoped lang="scss">
+.save-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #FF500B;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+
+  &:hover {
+    background-color: #FF500B;
+  }
+}
+.edit-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #FF500B;
+
+  &:hover {
+    color: #FF500B;
+  }
+}
+
+.edit-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+}
 
 .divider {
     border: none;

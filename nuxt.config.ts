@@ -15,13 +15,13 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-
   modules: ["@nuxt/icon", '@pinia/nuxt', '@nuxt/image', '@primevue/nuxt-module',
   '@hypernym/nuxt-anime'
   ],
   primevue: {
     components:{
-      exclude: ['Form','FormField']
+      exclude: ['Form','FormField'],
+      
     },
     options: {
       theme: {

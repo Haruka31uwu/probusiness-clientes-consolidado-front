@@ -5,6 +5,7 @@ export default defineNuxtPlugin(({ $pinia }) => {
     if (process.client) {
         setTimeout(() => {
             uiStore.initializeFromSessionStorage()
+            
         }, 0)
     }
 })

@@ -1,10 +1,17 @@
 <template>
   <div class="app">
-    <NuxtLayout >
+    <NuxtLayout>
       <NuxtPage />
+      <CommonsSpinner v-if="isLoading" />
     </NuxtLayout>
+
   </div>
 </template>
 <script setup lang="ts">
 
-</script>     
+const uiStore = useUiStore();
+
+const isLoading = computed(() => uiStore.getIsLoading);
+const authStore = useAuthStore();
+
+</script>

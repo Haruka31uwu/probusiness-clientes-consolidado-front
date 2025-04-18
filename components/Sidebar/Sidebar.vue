@@ -127,7 +127,7 @@
 </template>
 
 <script setup>
-import { useUiStore } from "~/stores/ui";
+import { useUiStore } from "~/stores/ui.store";
 import { filename } from "pathe/utils";
 const glob = import.meta.glob("@/assets/icon/*.svg", { eager: true });
 const icons = ref({});

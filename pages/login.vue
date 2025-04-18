@@ -1,5 +1,6 @@
 <template>
   <div class="bg-primary">
+
     <img src="~/assets/img/login_logo.png" alt="Logo" class="login-logo" />
     <div class="main-container">
       <div class="login-container">
@@ -13,16 +14,9 @@
           <form class="login-form">
             <div class="form-group">
               <label for="email">Correo</label>
-              <input
-                v-model="email"
-                type="email"
-                id="email"
-                placeholder="Ingresa tu correo electrónico"
-                :class="{
-                  'input-error': formErrors.email,
-                }"
-                @blur="validateField('email')"
-              />
+              <input v-model="email" type="email" id="email" placeholder="Ingresa tu correo electrónico" :class="{
+                'input-error': formErrors.email,
+              }" @blur="validateField('email')" />
               <small v-if="formErrors.email" class="input-message-error">
                 {{ formErrors.email }}
               </small>
@@ -30,34 +24,21 @@
             <div class="form-group">
               <label for="password">Contraseña</label>
               <div class="password-input">
-                <input
-                  v-model="password"
-                  ref="passwordInput"
-                  type="password"
-                  id="password"
-                  placeholder="Ingresa tu contraseña"
-                  :class="{
+                <input v-model="password" ref="passwordInput" type="password" id="password"
+                  placeholder="Ingresa tu contraseña" :class="{
                     'input-error': formErrors.password,
-                  }"
-                  @blur="validateField('password')"
-                />
+                  }" @blur="validateField('password')" />
 
-                <Icon
-                  :name="showPassword ? 'lucide:eye' : 'lucide:eye-off'"
-                  @click="handleShowPassword"
-                  class="password-icon"
-                />
+                <Icon :name="showPassword ? 'lucide:eye' : 'lucide:eye-off'" @click="handleShowPassword"
+                  class="password-icon" />
               </div>
               <small v-if="formErrors.password" class="input-message-error">
                 {{ formErrors.password }}
               </small>
             </div>
-            <button
-              type="submit"
-              class="primary-button"
-              @click.prevent="handleLogin"
-            >
+            <button type="submit" class="primary-button" @click.prevent="handleLogin">
               Iniciar sesión
+              {{ isAuthenticated }}
             </button>
           </form>
         </div>
@@ -70,14 +51,27 @@
   </div>
 </template>
 <script setup lang="ts">
+import { ApiError } from '~/services/api.service';
+import { login } from '~/services/auth.service';
+import type { StatusCode } from '~/helpers/constants';
+import { useUiStore } from '~/stores/ui.store';
+import { useAuthStore } from '~/stores/auth.store';
+const authStore = useAuthStore();
+
+const isAuthenticated = computed(() => authStore.isAuthenticated);
+//add middleware if loged go to home
+
+const uiStore = useUiStore();
 definePageMeta({
-  layout: 'no-sidebar'
+  layout: 'no-sidebar',
+  middleware: ["auth"],
+  
 })
-import AuthService from "@/services/auth.service";
 const showPassword = ref(false);
 const passwordInput = ref(null);
 const email = ref("");
 const password = ref("");
+const isLoading = ref(false);
 const validationRules = {
   email: [
     (v: string) => !!v || "El correo es requerido",
@@ -124,22 +118,30 @@ const validateForm = () => {
 
 // Manejar el envío del formulario
 const handleLogin = async () => {
+  uiStore.showLoading();
   if (validateForm()) {
-   await AuthService.login({
-      email: email.value,
-      password: password.value,
-    })
-      .then((response) => {
-        console.log("Login successful", response);
-        // Redirigir a la página de inicio o realizar otra acción
-      })
-      .catch((error) => {
-        console.error("Error en el inicio de sesión", error);
-        // Manejar el error de inicio de sesión
-      });
+    try {
+      const response = await login(email.value, password.value);
+      const authStore = useAuthStore();
+      authStore.isAuthenticated = true;
+      // authStore.setUser(response.user);
+      uiStore.hideLoading();
+      navigateTo("/");
+      
+    }
+    catch (error) {
+      if (error instanceof ApiError) {
+
+      } else {
+        console.error("Error inesperado:", error);
+      }
+    }
   } else {
     console.log("El formulario contiene errores");
   }
-};
-</script>     
+  uiStore.hideLoading();
   
+};
+
+
+</script>

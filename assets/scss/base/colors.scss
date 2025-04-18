@@ -1,8 +1,30 @@
-$primary:#FF500B;
-$gray: #585858;
-$light-gray:#F0F4F9;
-$gray2:#DFDFDF;
-$white: #FFFFFF;
-$black: #000000;
-$red: #FF0000;
-$green:#00D680;
+// colors.scss
+// Colores para modo claro (default)
+$light-primary: #FF500B;
+$light-gray: #585858;
+$light-light-gray: #F0F4F9;
+$light-gray2: #DFDFDF;
+$light-white: #FFFFFF;
+$light-black: #000000;
+$light-red: #FF0000;
+$light-green: #00D680;
+
+// Colores para modo oscuro
+$dark-primary: #FF944D; // Un tono más claro del naranja para mejor contraste
+$dark-gray: #A0A0A0;   // Gris más claro para texto
+$dark-light-gray: #1E1E1E; // Fondo claro en modo oscuro
+$dark-gray2: #2D2D2D;  // Gris oscuro para elementos
+$dark-white: #121212;  // Fondo oscuro
+$dark-black: #E0E0E0;  // Texto claro
+$dark-red: #FF6B6B;    // Rojo más suave
+$dark-green: #4CFFA3;  // Verde más brillante
+
+// Variables principales que cambiarán
+$primary: $light-primary;
+$gray: $light-gray;
+$light-gray: $light-light-gray;
+$gray2: $light-gray2;
+$white: $light-white;
+$black: $light-black;
+$red: $light-red;
+$green: $light-green;

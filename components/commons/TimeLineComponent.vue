@@ -13,8 +13,9 @@
             <span class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm">
                 <!--circle with check if item.status==1 else circle gray-->
                 <span :class="{
-                    'bg-success': slotProps.item.status === 1,
-                    'bg-gray': slotProps.item.status === 0,
+                    'bg-success': slotProps.item.status === 1 && !props.completed,
+                    'bg-gray': slotProps.item.status === 0 && !props.completed,
+                    'bg-bold-gray': props.completed,
                 }" class="w-8 h-8 rounded-full flex items-center justify-center">
                     <img v-if="slotProps.item.status === 1" src="assets/icon/check.svg" alt="check" class="h-4 w-4" />
 
@@ -23,8 +24,9 @@
         </template>
         <template #connector="slotProps">
             <span class="w-2 h-full " :class="{
-                'bg-success': slotProps.item.status === 1,
-                'bg-gray': slotProps.item.status === 0,
+                'bg-success': slotProps.item.status === 1 && !props.completed,
+                'bg-gray': slotProps.item.status === 0 && !props.completed,
+                'bg-bold-gray': props.completed,
             }"></span>
 
         </template>
@@ -38,6 +40,10 @@ const props = defineProps({
         type: Array as () => ContainerJourneyStatus[],
         default: () => [] as ContainerJourneyStatus[],
     },
+    completed: {
+        type: Boolean,
+        default: false,
+    }
 });
 </script>
 <style scoped lang="scss"></style>

@@ -1,6 +1,179 @@
 @use 'base/colors.scss';
 @use 'base/mixins.scss';
+.dark-mode {
+  --primary: #{colors.$dark-primary};
+  --gray: #{colors.$dark-gray};
+  --light-gray: #{colors.$dark-light-gray};
+  --gray2: #{colors.$dark-gray2};
+  --white: #{colors.$dark-white};
+  --black: #{colors.$dark-black};
+  --red: #{colors.$dark-red};
+  --green: #{colors.$dark-green};
 
+  background-color: colors.$dark-white;
+  color: colors.$dark-black;
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: var(--white);
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+
+    .sidebar__link {
+        display: flex;
+        padding: 8px 10px;
+        flex-direction: column;
+        align-items: flex-start !important;
+        justify-content: center !important;
+    }
+
+    .sidebar__sublink {
+        display: flex;
+        padding: 8px 10px;
+        flex-direction: row !important;
+        align-items: center !important;
+        color: var(--black);
+        transition: all 0.2s;
+
+        &:hover {
+            background-color: var(--light-gray);
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        a {
+            width: 100%;
+            color: inherit;
+        }
+    }
+
+    .sidebar__sublist {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: var(--black);
+        display: flex;
+        align-items: center;
+    }
+
+    &__subtitle {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: var(--gray);
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__item {
+        margin-bottom: 10px;
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        padding: 8px 10px;
+        color: var(--black);
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.2s;
+
+        &:hover {
+            background-color: var(--gray2);
+            color: var(--primary);
+        }
+    }
+
+    &__checkbox {
+        margin-right: 10px;
+        cursor: pointer;
+
+        &:checked + label {
+            font-weight: 500;
+        }
+    }
+
+    &__divider {
+        height: 1px;
+        background-color: var(--gray2);
+        margin: 20px 0;
+    }
+
+    .sidebar__item--active {
+        background-color: var(--light-gray) !important;
+        
+        a, span {
+            color: var(--primary) !important;
+        }
+        
+        width: 100%;
+    }
+
+    // Estilos específicos para modo oscuro
+    .dark-mode & {
+        background-color: var(--light-gray);
+        
+        &__title {
+            color: var(--black);
+        }
+        
+        &__subtitle {
+            color: var(--gray);
+        }
+        
+        &__link {
+            color: var(--black);
+            
+            &:hover {
+                background-color: var(--gray2);
+                color: var(--primary);
+            }
+        }
+        
+        &__divider {
+            background-color: var(--gray);
+        }
+        
+        .sidebar__sublink {
+            color: var(--black);
+            
+            &:hover {
+                background-color: var(--gray2);
+                color: var(--primary);
+            }
+        }
+        
+        .sidebar__item--active {
+            background-color: var(--gray2) !important;
+            
+            a, span {
+                color: var(--primary) !important;
+            }
+        }
+    }
+}
+}
 .sidebar {
     width: 250px;
     height: 100vh;

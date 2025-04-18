@@ -34,8 +34,7 @@
         <template #body="slotProps">
           <NuxtLink
             class="flex justify-center items-center gap-2"
-            :to="`/importaciones/trayecto/inspeccion/${slotProps.data.id}`"
-          >
+            :to="`/importaciones/trayecto/inspeccion/${slotProps.data.id}`">
             <img
               src="/assets/icon/eye.svg"
               alt="eye"
@@ -57,7 +56,8 @@ const columns = ref([
   { field: "arrivalDate", header: "Fecha arribo" },
   { field: "deliveryDate", header: "Fecha entrega" },
   { field: "qtyBox", header: "Qty Box" },
-  { field: "cbm", header: "FOB" },
+  { field: "cbm", header: "CBM" },
+  { field: "fob", header: "FOB" },
   { field: "fob", header: "Logistica" },
   { field: "logistic", header: "Impuestos" },
 ]);

@@ -8,17 +8,19 @@
       <span>Consolidado #{{ currentRouteArray.at(-1) }}</span>
       <div class="divider_vertical"></div>
       <span class="w-auto flex flex-row items-center ">
-        <div class="circle-success"></div>En proceso
+        <div class="circle-bold-gray"></div>Finalizado
       </span>
     </h4>
     <!-- Mostrar datos específicos del trayecto -->
     <h2 class="text-3xl font-bold text-start mt-10 mb-1">
-      Tu carga está en camino a Perú
+      Tu carga ha finalizado
     </h2>
     <div class="grid grid-cols-2 gap-4 items-start justify-center h-screen">
       <ShipTrackerSkeleton v-if="isLoadingShipTracker" />
       <ShipTracker :progress="progress" v-else />
-      <CommonsTimeLineComponent v-if="!isLoadingTimeline" :events="events" class="w-3/4 min-h-screen mx-auto" />
+      <CommonsTimeLineComponent v-if="!isLoadingTimeline" :events="events" :completed="true" class="w-3/4 min-h-screen mx-auto" 
+      
+      />
       <CommonsTimeLineSkeleton v-else class="w-3/4 min-h-screen mx-auto" />
 
 
@@ -55,9 +57,9 @@ onMounted(() => {
   );
   // Simular eventos de seguimiento
   events.value = [
-    { id: 1, status: 0, createdAt: "2023-10-01", containerId: 1, name: "Entregado" },
-    { id: 2, status: 0, createdAt: "2023-10-05", containerId: 1, name: "Pago" },
-    { id: 3, status: 0, createdAt: "2023-10-07", containerId: 1, name: "Levante" },
+    { id: 1, status: 1, createdAt: "2023-10-01", containerId: 1, name: "Entregado" },
+    { id: 2, status: 1, createdAt: "2023-10-05", containerId: 1, name: "Pago" },
+    { id: 3, status: 1, createdAt: "2023-10-07", containerId: 1, name: "Levante" },
     { id: 4, status: 1, createdAt: "2023-10-08", containerId: 1, name: "Declaración aduanera" },
     { id: 5, status: 1, createdAt: "2023-10-09", containerId: 1, name: "Arribo" },
     { id: 6, status: 1, createdAt: "2023-10-09", containerId: 1, name: "En trayecto" },

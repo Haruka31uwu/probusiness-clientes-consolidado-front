@@ -57,7 +57,7 @@
   
 <script setup >
 import Sidebar from "@/components/Sidebar/Sidebar.vue";
-import { useUiStore } from "~/stores/ui";
+import { useUiStore } from "~/stores/ui.store";
 //get current route
 import { useRoute } from "vue-router";
 
@@ -87,12 +87,7 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-.main-content {
-  flex: 1;
-  margin-left: 250px; // Igual al ancho de tu sidebar
-  padding: 20px;
-  background-color: #f4f4f4; // Color de fondo del contenido principal
-}
+
 .header {
   padding: 0;
   display: flex;

@@ -9,18 +9,22 @@ export default defineNuxtConfig({
     '@/assets/scss/main.scss',
     
   ],
-
+  
   vite: {
     plugins: [
       tailwindcss(),
     ],
+    build: {
+      rollupOptions: {
+        external: ['quill', 'chart.js/auto']      }
+    }
   },
   modules: ["@nuxt/icon", '@pinia/nuxt', '@nuxt/image', '@primevue/nuxt-module',
   '@hypernym/nuxt-anime'
   ],
   primevue: {
     components:{
-      exclude: ['Form','FormField'],
+      exclude: ['Form','FormField',],
       
     },
     options: {

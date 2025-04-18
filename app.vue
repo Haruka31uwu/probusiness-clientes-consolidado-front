@@ -4,7 +4,6 @@
       <NuxtPage />
       <CommonsSpinner v-if="isLoading" />
     </NuxtLayout>
-
   </div>
 </template>
 <script setup lang="ts">

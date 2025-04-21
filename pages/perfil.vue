@@ -2,7 +2,7 @@
     <main>
         <UserProfileSkeleton v-if="isLoading" />
         <UserProfileComponent v-else :userProfile="userProfile" class="user-profile" />
-        <Sidebar :userProfile="userProfile" class="sidebar" />
+        <!-- <Sidebar :userProfile="userProfile" class="sidebar" /> -->
     </main>
 </template>
 <script setup lang="ts">
@@ -31,7 +31,7 @@ onMounted(async () => {
         userProfile.value = {
             id: 1,
             fullName: "Juan Pérez",
-            photoUrl: "https://example.com/photo.jpg",
+            photoUrl: "https://static-00.iconduck.com/assets.00/profile-icon-2048x2048-yj5zf8da.png",
             email: "juan.perez@example.com",
             documentNumber: "12345678",
             age: 30,

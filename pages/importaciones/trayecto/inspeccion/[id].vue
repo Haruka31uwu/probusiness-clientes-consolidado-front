@@ -56,25 +56,25 @@ onMounted(() => {
             files: [{
                 id: 1,
                 name: "File 1",
-                type: "pdf",
+                type: "video",
                 size: 1024,
-                path: "file1.pdf",
+                path: "file1.mp4",
                 createdAt: "2023-10-01"
             },
             {
                 id: 2,
                 name: "File 2",
-                type: "pdf",
+                type: "video",
                 size: 1024,
-                path: "file2.pdf",
+                path: "file2.mp4",
                 createdAt: "2023-10-01"
             },
             {
                 id: 3,
                 name: "File 3",
-                type: "pdf",
+                type: "video",
                 size: 1024,
-                path: "file3.pdf",
+                path: "file3.mp4",
                 createdAt: "2023-10-01"
             },
             ],
@@ -86,7 +86,7 @@ onMounted(() => {
             files: [{
                 id: 1,
                 name: "File 1",
-                type: "pdf",
+                type: "video",
                 size: 1024,
                 path: "file1.pdf",
                 createdAt: "2023-10-01"
@@ -94,13 +94,13 @@ onMounted(() => {
             {
                 id: 2,
                 name: "File 2",
-                type: "pdf",
+                type: "video",
                 size: 1024,
                 path: "file2.pdf",
                 createdAt: "2023-10-01"
             },
             ],
-            notes: "pe"
+            notes: "xd"
         },
         {
             id: 3,
@@ -108,13 +108,13 @@ onMounted(() => {
             files: [{
                 id: 2,
                 name: "File 2",
-                type: "pdf",
+                type: "video",
                 size: 1024,
                 path: "file2.pdf",
                 createdAt: "2023-10-01"
             },
             ],
-            notes: "wa"
+            notes: "xd"
         }
 
         ];

@@ -16,7 +16,9 @@
       <div class="content">
         <!-- Sección de inspección -->
         <div class="inspection-section">
-          <h2>Inspección <span class="icon">📋</span></h2>
+          <h2>Inspección <span class="icon">
+            <img src="/assets/icon/inspection.svg" alt="eye" class="w-4 h-4 cursor-pointer" />
+          </span></h2>
           <div class="file-list">
             <div
               class="file-item"
@@ -24,20 +26,24 @@
               :key="file.id"
             >
               <span class="file-icon" @click="previewFile(file)" style="cursor: pointer;">
-                {{ getFileIcon(file.type) }}
+                <span v-html="getFileIcon(file.type)"></span>
               </span>
               <div class="file-info">
                 <span class="file-name">{{ file.name }}</span>
                 <span class="file-size">{{ formatFileSize(file.size) }}</span>
               </div>
-              <button class="delete-btn" @click="deleteFile(file)">🗑️</button>
+              <button class="delete-btn" @click="deleteFile(file)">
+                <img src="/assets/icon/trash.svg" alt="trash" class="w-5 h-5 cursor-pointer" />
+              </button>
             </div>
           </div>
         </div>
   
         <!-- Sección de notas -->
         <div class="notes-section">
-          <h2>Notas <span class="icon" @click="toggleEditNotes" style="cursor: pointer;">📝</span></h2>
+          <h2>Notas <span class="icon" @click="toggleEditNotes" style="cursor: pointer;">
+            <img src="/assets/icon/edit.svg" alt="edit" class="w-4 h-4 cursor-pointer" />
+          </span></h2>
           <textarea
             class="notes-input"
             placeholder="Escribe tus notas aquí" v-model="notesValue"
@@ -61,6 +67,12 @@
         </div>
         <div v-else-if="previewFileData.type === 'pdf'">
           <iframe :src="previewFileData.path" frameborder="0"></iframe>
+        </div>
+        <div v-else-if="previewFileData.type === 'video'">
+          <video controls>
+            <source :src="previewFileData.path" type="video/mp4" />
+            Tu navegador no soporta la etiqueta de video.
+          </video>
         </div>
         <div v-else>
           <p>Vista previa no disponible para este tipo de archivo.</p>
@@ -102,8 +114,17 @@ const notesValue = computed({
 // Diccionario de íconos según el tipo de archivo
 const fileIcons: Record<string, string> = {
   pdf: '📄',
-  image: '🖼️',
-  video: '🎥',
+  image: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17 1H3C1.89543 1 1 1.89543 1 3V17C1 18.1046 1.89543 19 3 19H17C18.1046 19 19 18.1046 19 17V3C19 1.89543 18.1046 1 17 1Z" stroke="#585858" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.5 8C7.32843 8 8 7.32843 8 6.5C8 5.67157 7.32843 5 6.5 5C5.67157 5 5 5.67157 5 6.5C5 7.32843 5.67157 8 6.5 8Z" stroke="#585858" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 13L14 8L3 19" stroke="#585858" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`,
+  video: `<svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M23 3L16 8L23 13V3Z" stroke="#585858" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 1H3C1.89543 1 1 1.89543 1 3V13C1 14.1046 1.89543 15 3 15H14C15.1046 15 16 14.1046 16 13V3C16 1.89543 15.1046 1 14 1Z" stroke="#585858" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`,
   excel: '📊',
   word: '📝',
   default: '📁', // Ícono por defecto para tipos desconocidos
